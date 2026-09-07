@@ -85,10 +85,21 @@ jobs:
           ANDROID_BUILD_TOOLS="${ANDROID_HOME}/build-tools/33.0.0"
           PLATFORM_JAR="${ANDROID_HOME}/platforms/android-33/android.jar"
 
-          # Fallback a android.jar del repositorio si no existe en el runner
           if [ ! -f "$PLATFORM_JAR" ]; then
-            #PLATFORM_JAR="./android.jar"
-            echo "android.jar not found"
+            if [ -f "./android.zip" ]; then
+              unzip -q ./android.zip -d extracted_jar
+              FOUND_JAR=$(find extracted_jar -name "android.jar" | head -n 1)
+              if [ -n "$FOUND_JAR" ]; then
+                PLATFORM_JAR="$FOUND_JAR"
+                echo "Found android.jar inside of zip: $PLATFORM_JAR"
+              else
+                echo "Error: android.jar not found inside of android.zip archive!"
+                exit 1
+              fi
+            else
+              echo "Error: android.jar and android.zip not found!"
+              exit 1
+            fi
           fi
 
           mkdir -p build
