@@ -82,12 +82,13 @@ jobs:
       - name: Build Overlay APK
         run: |
           # Ubicar herramientas del Android SDK
-          ANDROID_BUILD_TOOLS="${ANDROID_HOME}/build-tools/34.0.0"
-          PLATFORM_JAR="${ANDROID_HOME}/platforms/android-34/android.jar"
+          ANDROID_BUILD_TOOLS="${ANDROID_HOME}/build-tools/33.0.0"
+          PLATFORM_JAR="${ANDROID_HOME}/platforms/android-33/android.jar"
 
           # Fallback a android.jar del repositorio si no existe en el runner
           if [ ! -f "$PLATFORM_JAR" ]; then
-            PLATFORM_JAR="./android.jar"
+            #PLATFORM_JAR="./android.jar"
+            echo "android.jar not found"
           fi
 
           mkdir -p build
