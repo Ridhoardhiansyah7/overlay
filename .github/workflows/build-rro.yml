@@ -81,8 +81,16 @@ jobs:
 
       - name: Build Overlay APK
         run: |
-          # Ubicar herramientas del Android SDK
-          ANDROID_BUILD_TOOLS="${ANDROID_HOME}/build-tools/33.0.0"
+          # Cari direktori build-tools secara otomatis yang tersedia di runner
+          BUILD_TOOLS_DIR=$(ls -d ${ANDROID_HOME}/build-tools/* | sort -V | tail -n 1)
+          
+          if [ -z "$BUILD_TOOLS_DIR" ]; then
+            echo "Error: Android build-tools tidak ditemukan di dalam SDK!"
+            exit 1
+          fi
+          
+          echo "Menggunakan build-tools: $BUILD_TOOLS_DIR"
+
           PLATFORM_JAR="${ANDROID_HOME}/platforms/android-33/android.jar"
 
           if [ ! -f "$PLATFORM_JAR" ]; then
@@ -104,17 +112,17 @@ jobs:
 
           mkdir -p build
 
-          # 1. Compilar recursos con AAPT2
-          ${ANDROID_BUILD_TOOLS}/aapt2 compile --dir res/ -o build/resources.zip
+          # 1. Compilar recursos con AAPT2 menggunakan path dinamis
+          ${BUILD_TOOLS_DIR}/aapt2 compile --dir res/ -o build/resources.zip
 
           # 2. Vincular y generar APK no alineado
-          ${ANDROID_BUILD_TOOLS}/aapt2 link build/resources.zip \
+          ${BUILD_TOOLS_DIR}/aapt2 link build/resources.zip \
             -I "$PLATFORM_JAR" \
             --manifest AndroidManifest.xml \
             -o build/unaligned.apk
 
           # 3. Alinear el APK
-          ${ANDROID_BUILD_TOOLS}/zipalign -v 4 build/unaligned.apk build/overlay-signed.apk
+          ${BUILD_TOOLS_DIR}/zipalign -v 4 build/unaligned.apk build/overlay-signed.apk
 
       - name: Create Git Tag and GitHub Release
         uses: softprops/action-gh-release@v2
