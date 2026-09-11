@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><resources>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
     <integer name="config_screenBrightnessSettingMinimum">5</integer>
     <integer name="config_screenBrightnessSettingMaximum">255</integer>
     <integer name="config_screenBrightnessSettingDefault">160</integer>
@@ -50,4 +51,5 @@
         <item>255</item><item>255</item><item>255</item><item>255</item>
         <item>255</item><item>255</item><item>255</item><item>255</item>
         <item>255</item><item>255</item><item>255</item>
-    </integer-array></resources>
+    </integer-array>
+</resources>
