@@ -7,7 +7,7 @@
     <integer name="config_screenBrightnessDark">2</integer>
     <integer name="config_screenBrightnessDoze">1</integer>
 
-    <dimen name="config_screenBrightnessSettingMinimumFloat">0.01</dimen>
+    <dimen name="config_screenBrightnessSettingMinimumFloat">0.02</dimen>
     <dimen name="config_screenBrightnessSettingMaximumFloat">1.0</dimen>
     <dimen name="config_screenBrightnessSettingDefaultFloat">0.6</dimen>
     <dimen name="config_screenBrightnessDimFloat">0.05</dimen>
