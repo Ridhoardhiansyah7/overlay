@@ -2,6 +2,6 @@
     package="com.myos.brightness.overlay">
     <overlay 
         android:targetPackage="android" 
-        android:priority="99" 
+        android:priority="1000"
         android:isStatic="true" />
 </manifest>
