@@ -1,7 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.myos.brightness.overlay">
+    
+    <uses-sdk 
+        android:minSdkVersion="29"
+        android:targetSdkVersion="30" />
+    
     <overlay 
         android:targetPackage="android" 
         android:priority="1000"
         android:isStatic="true" />
+    
 </manifest>
