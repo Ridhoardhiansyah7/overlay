@@ -8,7 +8,7 @@
     <overlay 
         android:targetPackage="android" 
         android:priority="1000"
-        android:isStatic="false" />
+        android:isStatic="true" />
 
     <application android:hasCode="false" />
     
